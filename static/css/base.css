@@ -1,0 +1,48 @@
+body {
+    display: flex;
+    margin: 0;
+    font-family: 'Arial', sans-serif; /* Replace with your preferred Google Font */
+    background-color: aqua; /* Default light theme */
+}
+nav {
+    background-color: yellow;
+    width: 200px;
+    padding: 20px;
+    height: 100vh;
+    position: fixed; /* Make navbar fixed */
+    display: flex;
+    flex-direction: column;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+nav ul li {
+    margin: 20px 0;
+}
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+main {
+    margin-left: 220px; /* Space for the sidebar */
+    padding: 20px;
+    flex-grow: 1;
+}
+.theme-toggle {
+    cursor: pointer;
+    font-size: 24px; /* Make toggle icon bigger */
+    margin-top: 20px;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        position: relative; /* Change to relative on smaller screens */
+        width: 100%;
+        height: auto;
+    }
+    main {
+        margin-left: 0; /* Reset margin */
+    }
+}

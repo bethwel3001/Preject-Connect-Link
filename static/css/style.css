@@ -1,0 +1,131 @@
+/* General Styles */
+body {
+    background-color: #f9f9f9; /* Light background */
+    font-family: 'Arial', sans-serif; /* Font style */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container for centering */
+.container {
+    background: #ffffff; /* White background for form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px; /* Padding around the content */
+    width: 90%; /* Set width for small screens */
+    max-width: 400px; /* Set a maximum width */
+    text-align: center; /* Center the text */
+    animation: fadeIn 0.5s; /* Fade-in animation */
+}
+
+/* Form styles */
+.form {
+    display: flex;
+    flex-direction: column; /* Arrange inputs in a column */
+}
+
+input[type="email"],
+input[type="password"] {
+    padding: 10px; /* Padding inside inputs */
+    margin: 10px 0; /* Space between inputs */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+/* Change border color on focus */
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff; /* Highlight border color */
+    outline: none; /* Remove default outline */
+}
+
+/* Button styles */
+button {
+    padding: 10px; /* Padding inside button */
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+/* Change button background on hover */
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Back to Home Button */
+.back-button {
+    display: inline-block; /* Inline block for better styling */
+    margin-top: 10px; /* Space above button */
+    padding: 10px 15px; /* Padding for the button */
+    background-color: #28a745; /* Green background */
+    color: white; /* White text */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+/* Change back button background on hover */
+.back-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Flash messages styles */
+.flashes {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+.flashes li {
+    margin: 10px 0; /* Space between messages */
+    padding: 10px; /* Padding around messages */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.success {
+    background-color: #d4edda; /* Green background */
+    color: #155724; /* Dark green text */
+}
+
+.danger {
+    background-color: #f8d7da; /* Red background */
+    color: #721c24; /* Dark red text */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px); /* Slide up effect */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Original position */
+    }
+}
+
+/* Small screen compatibility */
+@media (max-width: 600px) {
+    body {
+        height: auto; /* Allow height to adjust */
+    }
+
+    .container {
+        width: 90%; /* Full width for smaller screens */
+        max-width: 90%; /* No max width constraint */
+    }
+
+    /* Adjust padding and margins for small screens */
+    input[type="email"],
+    input[type="password"],
+    button,
+    .back-button {
+        padding: 8px; /* Adjust padding */
+    }
+}

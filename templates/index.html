@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect-Link</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,    400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&    family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"     
+    rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/"><div class="logo">Connect-Link</div></a>
+        <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#partners">Partners</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon" id="theme-icon"></i></button></li>
+            <li><a href="/login" class="btn">Login</a></li>
+            <li><a href="/register" class="btn">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div class="content-container">
+            <h1 class="fade-in">Welcome to <span>Connect-Link</span>
+              <span><script src="https://cdn.lordicon.com/lordicon.js"></script>
+                <lord-icon
+                    src="https://cdn.lordicon.com/gsjfryhc.json"
+                    trigger="hover"
+                    stroke="bold"
+                    colors="primary:#c71f16,secondary:#c7c116"
+                    style="font-family: 'Pacifico', cursive;
+                    font-size: 3rem;
+                    margin-bottom: 1rem;">
+                </lord-icon></span>
+            </h1>
+            <p class="fade-in">Your gateway to endless possibilities.</p>
+            <p class="fade-in">We connect graduates with volunteering organisations .. And vice-versa..</p>
+            <div class="btn-container fade-in">
+                <a href="#services" class="blue-btn">Activities</a>
+                <a href="#contact" class="blue-btn">Join Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- about -->
+    <section id="about">
+        <div class="about-content">
+          <h2>About Connect-Link</h2>
+          <p>
+            Connect-Link is a community-focused portal designed to bridge the gap between individuals, organizations, and services. 
+            Our goal is to provide a reliable, unbiased, and fast platform where people can discover activities, access resources, 
+            and connect with partners. Whether you're looking to join, contribute, or explore, Connect-Link makes it seamless for 
+            everyone to participate and engage meaningfully.
+          </p>
+      
+          <div class="features">
+            <div class="feature-box">
+              <i class="fas fa-check-circle"></i>
+              <h3>Reliable</h3>
+            </div>
+            <div class="feature-box">
+              <i class="fas fa-balance-scale"></i>
+              <h3>Non-Bias</h3>
+            </div>
+            <div class="feature-box">
+              <i class="fas fa-bolt"></i>
+              <h3>Fast</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- Services Section -->
+
+    <section id="services">
+        <h2 class="fade-in">Our Services</h2>
+        <p class="fade-in">
+            At Connect-Link, we empower youth by providing various services designed to enhance their skills, build networks, and engage in community activities. Here’s how you can get started with our offerings:
+        </p>
+    
+        <div class="services-container fade-in">
+            <div class="service-box">
+                <h3>Skill Development</h3>
+                <p>Participate in workshops and training sessions to enhance your skills.</p>
+            </div>
+            <div class="service-box">
+                <h3>Networking Opportunities</h3>
+                <p>Connect with industry professionals and other youth to expand your network.</p>
+            </div>
+            <div class="service-box">
+                <h3>Community Engagement</h3>
+                <p>Get involved in community service projects and initiatives.</p>
+            </div>
+            <div class="service-box">
+                <h3>Mentorship Programs</h3>
+                <p>Receive guidance and support from experienced mentors in your field.</p>
+                
+            </div>
+            <p>How to join us..</p>
+        </div>
+        
+        <div class="roadmap fade-in">
+            
+            <div class="roadmap-step">
+                <div class="step-number">1</div>
+                <div class="step-title">Sign Up</div>
+            </div>
+            <div class="roadmap-step">
+                <div class="step-number">2</div>
+                <div class="step-title">Search for an Activity</div>
+            </div>
+            <div class="roadmap-step">
+                <div class="step-number">3</div>
+                <div class="step-title">Apply</div>
+            </div>
+            <div class="roadmap-step">
+                <div class="step-number">4</div>
+                <div class="step-title">Get Granted</div>
+            </div>
+            <div class="roadmap-step">
+                <div class="step-number">5</div>
+                <div class="step-title">Refer Others</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- partners -->
+    <section id="partners">
+        <h2 class="fade-in">Our Partners</h2>
+        <div class="partners-container fade-in">
+            <div class="partner-oval">
+                <img src="path/to/image1.jpg" alt="Partner 1" class="partner-image">
+                <div class="partner-info">
+                    <h3>Partner Name 1</h3>
+                    <p>Brief description of Partner 1 goes here.</p>
+                </div>
+            </div>
+            <div class="partner-oval">
+                <img src="path/to/image2.jpg" alt="Partner 2" class="partner-image">
+                <div class="partner-info">
+                    <h3>Partner Name 2</h3>
+                    <p>Brief description of Partner 2 goes here.</p>
+                </div>
+            </div>
+            <div class="partner-oval">
+                <img src="path/to/image3.jpg" alt="Partner 3" class="partner-image">
+                <div class="partner-info">
+                    <h3>Partner Name 3</h3>
+                    <p>Brief description of Partner 3 goes here.</p>
+                </div>
+            </div>
+            <div class="partner-oval">
+                <img src="path/to/image4.jpg" alt="Partner 4" class="partner-image">
+                <div class="partner-info">
+                    <h3>Partner Name 4</h3>
+                    <p>Brief description of Partner 4 goes here.</p>
+                </div>
+            </div>
+            <div class="partner-oval">
+                <img src="path/to/image5.jpg" alt="Partner 5" class="partner-image">
+                <div class="partner-info">
+                    <h3>Partner Name 5</h3>
+                    <p>Brief description of Partner 5 goes here.</p>
+                </div>
+            </div>
+            <div class="partner-oval">
+                <img src="path/to/image6.jpg" alt="Partner 6" class="partner-image">
+                <div class="partner-info">
+                    <h3>Partner Name 6</h3>
+                    <p>Brief description of Partner 6 goes here.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+
+    <section id="contact">
+        <div class="contact-container fade-in">
+            <div class="contact-form">
+                <h2>Contact Us</h2>
+                <form id="contactForm" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="send-button">Send</button>
+                </form>
+            </div>
+            <div class="testimonials">
+                <h2>Testimonials</h2>
+                <div class="testimonial" id="testimonial1">
+                    <img src="https://images.unsplash.com/photo-1608453162650-cba45689c284?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sbGVnZSUyMHN0dWRlbnRzfGVufDB8fDB8fHww" alt="Testimonial 1">
+                    <h3>John Doe</h3>
+                    <p>"Connect-Link has truly transformed my life!"</p>
+                </div>
+                <div class="testimonial" id="testimonial2" style="display: none;">
+                    <img src="https://images.unsplash.com/photo-1631128869897-68e78bf4fb7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNvbGxlZ2UlMjBzdHVkZW50c3xlbnwwfHwwfHx8MA%3D%3D" alt="Testimonial 2">
+                    <h3>Jane Smith</h3>
+                    <p>"I found incredible opportunities through this platform!"</p>
+                </div>
+                <div class="testimonial" id="testimonial3" style="display: none;">
+                    <img src="https://images.unsplash.com/photo-1614642481956-192cc7cbfc6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGNvbGxlZ2UlMjBzdHVkZW50c3xlbnwwfHwwfHx8MA%3D%3D" alt="Testimonial 3">
+                    <h3>Emily Johnson</h3>
+                    <p>"The support and resources available are amazing!"</p>
+                </div>
+                <div class="testimonial" id="testimonial4" style="display: none;">
+                    <img src="https://media.istockphoto.com/id/2026162051/photo/portrait-of-a-young-latin-female-student-using-laptop-on-the-bench-on-campus.webp?a=1&b=1&s=612x612&w=0&k=20&c=DPqe5WZ7zuP7ndh-WwnVjNRBXP50Bgptn_wvGUP8zjE=" alt="Testimonial 4">
+                    <h3>Michael Brown</h3>
+                    <p>"Connect-Link helped me connect with mentors!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ Section -->
+
+    <!-- Footer (now only at the bottom) -->
+    <footer>
+        <div class="footer-container">
+            <!-- First Column: Social Media Handles -->
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+    
+            <!-- Second Column: Quick Links -->
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Sign In</a></li>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Contributions</a></li>
+                </ul>
+            </div>
+    
+            <!-- Third Column: Copyright -->
+            <div class="footer-column">
+                <h3>Copyright</h3>
+                <p>&copy; 2024 Connect-Link. All rights reserved.</p>
+                <p>A SpaceNext <sup>TM</sup>software product</p>
+            </div>
+    
+            <!-- Fourth Column: Subscribe to Newsletter -->
+            <div class="footer-column">
+                <h3>Subscribe to Our Newsletter</h3>
+                <form>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript -->
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        // Dark/Light Mode Toggle
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            themeIcon.classList.toggle('fa-sun');
+            themeIcon.classList.toggle('fa-moon');
+        });
+
+        // Hamburger Menu Toggle
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Scroll Animation for Fade-In Effect
+        window.addEventListener('scroll', () => {
+            fadeElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+
+        // Trigger animation on page load
+        window.addEventListener('load', () => {
+            fadeElements.forEach(el => el.classList.add('visible'));
+        });
+    </script>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script>// JavaScript to handle testimonial rotation
+    let currentTestimonial = 1;
+    const totalTestimonials = 4;
+    
+    function showTestimonial(index) {
+        for (let i = 1; i <= totalTestimonials; i++) {
+            const testimonial = document.getElementById(`testimonial${i}`);
+            if (i === index) {
+                testimonial.style.display = 'flex';
+                testimonial.style.opacity = '1'; // Fade in
+            } else {
+                testimonial.style.display = 'none';
+                testimonial.style.opacity = '0'; // Fade out
+            }
+        }
+    }
+    
+    setInterval(() => {
+        currentTestimonial++;
+        if (currentTestimonial > totalTestimonials) {
+            currentTestimonial = 1;
+        }
+        showTestimonial(currentTestimonial);
+    }, 10000); // Change every 30 seconds
+    
+    // Show the first testimonial initially
+    showTestimonial(currentTestimonial);
+    </script>
+
+</body>
+</html>
