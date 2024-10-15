@@ -2,10 +2,11 @@ from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_sqlalchemy import SQLAlchemy
 from connectlink.routes import auth_bp
 # Initialize Flask app
-
 # connecting to models.py in the connectlink folder
 from connectlink.models import db, User, Service
 from flask_migrate import Migrate
+from flask_login import LoginManager
+
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -17,6 +18,16 @@ app.config['SECRET_KEY'] = 'supersecretkey'  # Update to a secure key for produc
 
 # Initialize SQLAlchemy and Flask-Migrate
 db.init_app(app)
+
+    # Set up Flask-Login
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'auth.login'  # Redirect to login if not authenticated
+
+    # User loader function required by Flask-Login
+@login_manager.user_loader
+def load_user(user_id):
+        return User.query.get(int(user_id))
 
 # Register the authentication blueprint
 app.register_blueprint(auth_bp)
