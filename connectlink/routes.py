@@ -1,10 +1,13 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request
+from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
 # from models import db, User
 from connectlink.models import db, User
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 from flask import Blueprint, render_template
 from flask_login import login_required, current_user
+# updated libs for profile pic adjustment
+import os
+from werkzeug.utils import secure_filename
 # Create a Blueprint for authentication routes
 auth_bp = Blueprint('auth', __name__)
 
@@ -18,6 +21,40 @@ def dashboard():
     return render_template('dashboard.html', user=current_user)
 
 
+# for profile picture start
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    """Check if the uploaded file has an allowed extension."""
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# Route to update the profile picture
+@auth_bp.route('/update-profile-picture', methods=['POST'])
+@login_required
+def update_profile_picture():
+    if 'profile_image' not in request.files:
+        flash('No file part', 'danger')
+        return redirect(request.url)
+
+    file = request.files['profile_image']
+
+    if file and allowed_file(file.filename):
+        filename = secure_filename(f"{current_user.id}_{file.filename}")  # Ensure a unique filename
+        file_path = os.path.join(current_app.root_path, 'static/images/profiles', filename)
+        
+        file.save(file_path)  # Save the file to the 'profiles' folder
+
+        # Update the user's profile image in the database
+        current_user.profile_image = filename
+        db.session.commit()
+
+        flash('Profile picture updated successfully!', 'success')
+    else:
+        flash('Invalid file type. Please upload a PNG, JPG, or JPEG image.', 'danger')
+
+# added auth to make it auth.dashboard --- error fixing
+    return redirect(url_for('auth.dashboard'))
+# dp
 # Sign-up route
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def signup():
@@ -50,7 +87,8 @@ def login():
         if user:
             login_user(user)
             flash('Logged in successfully!', 'success')
-            return redirect(url_for('dashboard'))
+            # fixed the dashboard reachability 9.03am wednesday
+            return redirect(url_for('auth.dashboard'))
         else:
             flash('Invalid credentials. Please try again.', 'danger')
     return render_template('login.html')

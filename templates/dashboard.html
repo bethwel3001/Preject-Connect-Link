@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script defer src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</head>
+<body class="light-theme">
+    <button class="menu-btn">&#9776;</button> <!-- Hamburger Menu Button -->
+
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#" class="tab-link active" data-tab="home">🏠 Home</a></li>
+                <li><a href="#" class="tab-link" data-tab="dashboard">📊 Dashboard</a></li>
+                <li><a href="#" class="tab-link" data-tab="contact">📞 Contact</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">🚪Logout</a></li>
+                <li><a href="#" class="tab-link" data-tab="edit">✏️ Edit Profile</a></li>
+            </ul>
+            <button id="theme-toggle">Switch Theme</button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main id="content">
+             <!-- Home Tab -->
+             <section id="home" class="tab-content active">
+                <div class="home-header">
+                    <h1>Welcome to Connect-Link, {{ current_user.username }}!</h1>
+                    <img 
+                        src="{{ url_for('static', filename='images/profiles/' + (current_user.profile_image or 'default-user.png')) }}" 
+                        alt="User Icon" 
+                        class="user-icon large">
+                </div>
+
+                <div class="description">
+                    <p>
+                        At Connect-Link, we foster community connections and empower youth through impactful service and collaboration.
+                    </p>
+                    <img src="{{ url_for('static', filename='images/celebrate.gif') }}" 
+                         alt="Celebration GIF" 
+                         class="animated-gif">
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">What is Connect-Link?</button>
+                        <div class="faq-answer">
+                            <p>Connect-Link is a platform focused on community service and youth empowerment.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">How do I get involved?</button>
+                        <div class="faq-answer">
+                            <p>You can participate in events or volunteer through various projects listed on our dashboard.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What services are offered?</button>
+                        <div class="faq-answer">
+                            <p>We offer mentorship programs, training, and volunteering opportunities for individuals and organizations.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">How can I contact support?</button>
+                        <div class="faq-answer">
+                            <p>You can contact us through the 'Contact' tab or by sending an email to support@connectlink.com.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </main>
+<!-- Home Tab ending-->
+<!-- dash -->
+ <!-- Main Content Area -->
+        <main id="content">
+            <!-- Dashboard Tab -->
+            <section id="dashboard" class="tab-content active fade-in">
+                <section class="user-info">
+                    <form action="{{ url_for('auth.update_profile_picture') }}" method="POST" enctype="multipart/form-data">
+                        <img 
+                            src="{{ url_for('static', filename='images/profiles/' + (current_user.profile_image or 'default-user.png')) }}" 
+                            alt="User Icon" 
+                            class="user-icon"
+                        >
+                        <input type="file" name="profile_image" accept="image/*" required>
+                        <button type="submit" class="upload-btn">Upload New Picture</button>
+                    </form>
+                    
+                    <div class="user-details">
+                        <h2>Welcome, {{ current_user.username }}!</h2>
+                        <p>A brief description about you goes here. Add more details in your profile.</p>
+                    </div>
+                </section>
+
+                <!-- Brief Text -->
+                <div class="dashboard-description">
+                    <p>Below is an overview of your ongoing and past activities with organizations.</p>
+                </div>
+
+                <!-- Activities Table -->
+                <div class="activities-container">
+                    <h2>My Activities</h2>
+                    <table class="activities-table">
+                        <thead>
+                            <tr>
+                                <th>Organization</th>
+                                <th>Progress %</th>
+                                <th>Achievements</th>
+                                <th>Date Joined</th>
+                                <th>Date to Leave</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Community Outreach Program</td>
+                                <td>75%</td>
+                                <td>Mentored 20 youth members</td>
+                                <td>2023-01-15</td>
+                                <td>2024-01-15</td>
+                            </tr>
+                            <tr>
+                                <td>Green Initiative</td>
+                                <td>50%</td>
+                                <td>Planted 100 trees</td>
+                                <td>2023-06-01</td>
+                                <td>2024-06-01</td>
+                            </tr>
+                            <tr>
+                                <td>Digital Literacy Program</td>
+                                <td>90%</td>
+                                <td>Trained 50 participants</td>
+                                <td>2022-09-10</td>
+                                <td>2023-09-10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <!-- contact -->
+        <section id="contact" class="tab-content">
+            <!-- Loader Screen -->
+            <div id="loader">
+                <h1>Karibu...</h1>
+            </div>
+        
+            <div class="contact-container">
+                <h2>Contact Information</h2>
+        
+                <!-- Your Contact Info -->
+                <div class="contact-section">
+                    <h3>Your Contact Info</h3>
+                    <ul>
+                        <li><strong>Name:</strong> {{ current_user.name }}</li>
+                        <li><strong>Email:</strong> {{ current_user.email }}</li>
+                        <li><strong>Backup Email:</strong> backup_email@example.com</li>
+                        <li><strong>Phone No:</strong> +123-456-7890</li>
+                    </ul>
+                </div>
+        
+                <!-- Team Members' Contact Info -->
+                <div class="contact-section">
+                    <h3>Team Members</h3>
+                    <ul>
+                        <li><strong>Alice:</strong> alice@example.com | +111-222-3333</li>
+                        <li><strong>Bob:</strong> bob@example.com | +444-555-6666</li>
+                        <li><strong>Charlie:</strong> charlie@example.com | +777-888-9999</li>
+                    </ul>
+                </div>
+        
+                <!-- Organizations' Contact Info -->
+                <div class="contact-section">
+                    <h3>Organizations</h3>
+                    <ul>
+                        <li><strong>Community Outreach:</strong> outreach@example.org | +123-000-0000</li>
+                        <li><strong>Green Initiative:</strong> green@example.org | +321-999-8888</li>
+                        <li><strong>Digital Literacy:</strong> literacy@example.org | +567-890-1234</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- edit -->
+         
+    </div>
+ <!-- dash end -->
+
+</body>
+</html>
