@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Statistics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .chart-container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Accomplishments</h1>
+    <div class="chart-container">
+        <canvas id="taskChart"></canvas>
+    </div>
+    <button class="back-btn" onclick="window.close()">Go Back</button>
+
+    <script>
+        // Create a chart showing task progress
+        const ctx = document.getElementById('taskChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Task 1', 'Task 2', 'Task 3', 'Task 4'],
+                datasets: [{
+                    label: 'Completion Level (%)',
+                    data: [75, 50, 90, 30],
+                    backgroundColor: ['#4caf50', '#ffeb3b', '#2196f3', '#f44336']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

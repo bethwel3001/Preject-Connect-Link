@@ -6,80 +6,249 @@
     <title>My Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
     <script defer src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+      <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 </head>
 <body class="light-theme">
-    <button class="menu-btn">&#9776;</button> <!-- Hamburger Menu Button -->
+    <!-- Hamburger Menu Button for Small Screens -->
+    <button class="menu-btn" id="menu-btn">&#9776;</button>
 
-    <div class="container">
-        <!-- Sidebar -->
-        <nav class="sidebar">
-            <ul>
-                <li><a href="#" class="tab-link active" data-tab="home">🏠 Home</a></li>
-                <li><a href="#" class="tab-link" data-tab="dashboard">📊 Dashboard</a></li>
-                <li><a href="#" class="tab-link" data-tab="contact">📞 Contact</a></li>
-                <li><a href="{{ url_for('auth.logout') }}">🚪Logout</a></li>
-                <li><a href="#" class="tab-link" data-tab="edit">✏️ Edit Profile</a></li>
-            </ul>
-            <button id="theme-toggle">Switch Theme</button>
-        </nav>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#" class="tab-link active" data-tab="home">🏠 Home</a></li>
+            <li><a href="#" class="tab-link" data-tab="dashboard">📊 Dashboard</a></li>
+            <li><a href="#" class="tab-link" data-tab="contact">📞 Contact</a></li>
+            <li><a href="#" class="tab-link" data-tab="edit">✏️ Edit Profile</a></li>
+            <li><a href="{{ url_for('auth.logout') }}">🚪 Logout</a></li>
+            <li><a href="{{ url_for('auth.index') }}" class="back-button">🕸️ Back to site</a></li>
+            <!-- icon for back to home -->
 
-        <!-- Main Content Area -->
-        <main id="content">
-             <!-- Home Tab -->
-             <section id="home" class="tab-content active">
-                <div class="home-header">
-                    <h1>Welcome to Connect-Link, {{ current_user.username }}!</h1>
-                    <img 
-                        src="{{ url_for('static', filename='images/profiles/' + (current_user.profile_image or 'default-user.png')) }}" 
-                        alt="User Icon" 
-                        class="user-icon large">
+        </ul>
+        <abbr title="ToggleTheme"><button id="theme-toggle">Switch Theme</button></abbr>
+    </nav>
+
+    <!-- Main Content Sections -->
+    <div class="content">
+        <section id="home" class="tab-content active">
+           <!-- Main Content Sections -->
+    <div class="content" id="home">
+        <div class="welcome">
+            <h1>Welcome to Connect-Link, {{ current_user.username }}!</h1>
+            <img 
+                src="{{ url_for('static', filename='images/profiles/' + (current_user.profile_image or 'default-user.png')) }}" 
+                alt="User Icon" 
+                class="user-icon large">
+            <p class="description">
+                Connect-Link is a place where you connect, collaborate, and grow. Explore the dashboard to see your activities, 
+                manage contacts, and customize your profile. We're glad to have you onboard!
+            </p>
+        </div>
+        <div class="background-animation">
+            <!-- Circles for animation -->
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </div>
+        </section>
+
+    <section id="dashboard" class="tab-content">
+<!-- unecessary divs, i dont understand the necesity of some --- haha😂😂 -->
+    <div id="dashboard-section">
+    <div class="dashboard-content">
+        <!-- Top Section -->
+        <div class="top-section">
+            <div class="card messages-card" id="messagesCard">
+                <i class="fas fa-envelope icon"></i>
+                <h3>New Messages</h3>
+                <p>2</p>
+            </div>
+            <div class="card task-progress-card" id="taskProgressCard">
+                <i class="fas fa-tasks icon"></i>
+                <h3>Task Progress</h3>
+                <p>76%</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-users icon"></i>
+                <h3>Total Users</h3>
+                <p>1,234</p>
+            </div>
+        </div>
+        <!-- Message Popup -->
+        <div id="messageModal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-modal" id="closeMessageModal">&times;</span>
+                <h3>Chat Messages</h3>
+                <ul class="messages-list">
+                    <li><strong>Alex:</strong> "Hey, let's catch up!"</li>
+                    <li><strong>Chris:</strong> "Don’t forget the meeting at 3 PM."</li>
+                </ul>
+                <textarea placeholder="Write your message here..." rows="4"></textarea>
+                <button class="send-btn" id="sendMessageBtn">Send</button>
+            </div>
+        </div>
+                <!-- Activity Feed -->
+                <div class="activity-feed fade-in delay-2">
+                    <h2><i class="fas fa-bell"></i> Recent Activities</h2>
+                    <ul>
+                        <li><i class="fas fa-clock"></i> You logged in at 10:30 AM</li>
+                        <li><i class="fas fa-comment"></i> New message from Alex, Chris</li>
+                        <li><i class="fas fa-check-circle"></i> You completed Task #2</li>
+                    </ul>
                 </div>
-
-                <div class="description">
-                    <p>
-                        At Connect-Link, we foster community connections and empower youth through impactful service and collaboration.
-                    </p>
-                    <img src="{{ url_for('static', filename='images/celebrate.gif') }}" 
-                         alt="Celebration GIF" 
-                         class="animated-gif">
+                <!-- Bottom Section: Calendar and Messages -->
+                <div class="bottom-section fade-in delay-3">
+                    <div class="calendar">
+                        <h2><i class="fas fa-calendar-alt"></i> Upcoming Events</h2>
+                        <p>You're not cought up! .no upcoming events.</p>
+                        <div class="events-table-wrapper">
+                            <table class="events-table">
+                                <thead>
+                                    <tr>
+                                        <th>Organisation</th>
+                                        <th>Date Joined</th>
+                                        <th>Achievements</th>
+                                        <th>Date to Leave</th>
+                                        <th>Rating</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tech Innovators</td>
+                                        <td>Jan 10, 2022</td>
+                                        <td>Product Launch</td>
+                                        <td>Dec 10, 2024</td>
+                                        <td>⭐⭐⭐⭐</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dev Community</td>
+                                        <td>Mar 1, 2021</td>
+                                        <td>Hackathon Winner</td>
+                                        <td>Feb 28, 2025</td>
+                                        <td>⭐⭐⭐</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+            
+                    <div class="messages-preview">
+                        <h2><i class="fas fa-envelope-open-text"></i> Messages</h2>
+                        <p>Gee😊! You have 2 unread messages.</p>
+                    </div>
                 </div>
+            </div>
+            
+        </section>
 
+        <section id="contact" class="tab-content">
+            <div class="contact-page">
+                <h1>Contact Us</h1>
+            
+                <!-- Contact Form -->
+                <section class="form-section">
+                    <h2><i class="fas fa-envelope"></i> Send Us a Message</h2>
+                    <form class="contact-form">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            
+                        <label for="subject">Subject:</label>
+                        <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
+            
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" placeholder="Write your message" rows="5" required></textarea>
+            
+                        <button type="submit">Send Message</button>
+                    </form>
+                </section>
+            
+                <!-- Contact Information -->
+                <section class="info-section">
+                    <h2><i class="fas fa-info-circle"></i> Contact Info</h2>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Connect-Link Street, Nairobi, Kenya</p>
+                    <p><i class="fas fa-phone-alt"></i> +254 712 345 678</p>
+                    <p><i class="fas fa-envelope"></i> support@connect-link.com</p>
+                    <p><i class="fas fa-clock"></i> Support Hours: Mon-Fri, 9 AM - 5 PM</p>
+                </section>
+            <!-- Floating Live Chat Widget -->
+<div class="chat-widget" id="chatWidget">
+    <div class="chat-header">
+        <i class="fas fa-comments"></i> Chat with Us!
+        <button id="closeChat"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="chat-content">
+        <p>Hello! How can we assist you today?</p>
+        <textarea id="chatMessage" placeholder="Type your message..."></textarea>
+        <button id="sendChat">Send</button>
+    </div>
+</div>
+
+<!-- Floating Chat Button -->
+<button class="chat-button" id="openChat">
+    <i class="fas fa-comment-alt"></i>
+</button>
+
+                <!-- Social Media Links -->
+                <section class="social-media-section">
+                    <h2><i class="fas fa-share-alt"></i> Follow Us</h2>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </section>
+            
                 <!-- FAQ Section -->
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <button class="faq-question">What is Connect-Link?</button>
-                        <div class="faq-answer">
-                            <p>Connect-Link is a platform focused on community service and youth empowerment.</p>
-                        </div>
+                <section class="faq-section">
+                    <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+                    <div class="faq">
+                        <button class="faq-toggle">How soon will I get a reply? <i class="fas fa-chevron-down"></i></button>
+                        <p class="faq-content">We usually respond within 24 hours during working days.</p>
+            
+                        <button class="faq-toggle">Can I call for urgent support? <i class="fas fa-chevron-down"></i></button>
+                        <p class="faq-content">Yes, you can call us at +254 712 345 678 during support hours.</p>
                     </div>
-                    <div class="faq-item">
-                        <button class="faq-question">How do I get involved?</button>
-                        <div class="faq-answer">
-                            <p>You can participate in events or volunteer through various projects listed on our dashboard.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">What services are offered?</button>
-                        <div class="faq-answer">
-                            <p>We offer mentorship programs, training, and volunteering opportunities for individuals and organizations.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">How can I contact support?</button>
-                        <div class="faq-answer">
-                            <p>You can contact us through the 'Contact' tab or by sending an email to support@connectlink.com.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            </main>
-<!-- Home Tab ending-->
-<!-- dash -->
- <!-- Main Content Area -->
-        <main id="content">
-            <!-- Dashboard Tab -->
-            <section id="dashboard" class="tab-content active fade-in">
-                <section class="user-info">
+                </section>
+            
+                <!-- Embedded Google Map -->
+                <section class="map-section">
+                    <h2><i class="fas fa-map"></i> Find Us</h2>
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509094!2d144.95565131531057!3d-37.81621817975105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43f1f4b7b1%3A0xf17e6a45f7a1c72!2sConnect-Link%20Street!5e0!3m2!1sen!2ske!4v1635135295565!5m2!1sen!2ske" 
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </section>
+            </div>
+            
+        </section>
+
+        <section id="edit" class="tab-content">
+            <section class="edit-profile">
+                <h2>Edit Profile</h2>
+            <h3>{{ current_user.username }} update your profile below!</h3>
+                <!-- Profile Picture -->
+                <div class="profile-pic">
                     <form action="{{ url_for('auth.update_profile_picture') }}" method="POST" enctype="multipart/form-data">
                         <img 
                             src="{{ url_for('static', filename='images/profiles/' + (current_user.profile_image or 'default-user.png')) }}" 
@@ -89,106 +258,90 @@
                         <input type="file" name="profile_image" accept="image/*" required>
                         <button type="submit" class="upload-btn">Upload New Picture</button>
                     </form>
-                    
-                    <div class="user-details">
-                        <h2>Welcome, {{ current_user.username }}!</h2>
-                        <p>A brief description about you goes here. Add more details in your profile.</p>
+                </div>
+            
+                <!-- User Information -->
+                <form class="profile-form-horizontal">
+                    <!-- Flex container for form fields -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" value="{{ current_user.full_name }}" required>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" value="{{ current_user.username }}" readonly>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" value="{{ current_user.email }}" required>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" value="{{ current_user.phone }}">
+                        </div>
                     </div>
-                </section>
-
-                <!-- Brief Text -->
-                <div class="dashboard-description">
-                    <p>Below is an overview of your ongoing and past activities with organizations.</p>
-                </div>
-
-                <!-- Activities Table -->
-                <div class="activities-container">
-                    <h2>My Activities</h2>
-                    <table class="activities-table">
-                        <thead>
-                            <tr>
-                                <th>Organization</th>
-                                <th>Progress %</th>
-                                <th>Achievements</th>
-                                <th>Date Joined</th>
-                                <th>Date to Leave</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Community Outreach Program</td>
-                                <td>75%</td>
-                                <td>Mentored 20 youth members</td>
-                                <td>2023-01-15</td>
-                                <td>2024-01-15</td>
-                            </tr>
-                            <tr>
-                                <td>Green Initiative</td>
-                                <td>50%</td>
-                                <td>Planted 100 trees</td>
-                                <td>2023-06-01</td>
-                                <td>2024-06-01</td>
-                            </tr>
-                            <tr>
-                                <td>Digital Literacy Program</td>
-                                <td>90%</td>
-                                <td>Trained 50 participants</td>
-                                <td>2022-09-10</td>
-                                <td>2023-09-10</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </main>
-
-        <!-- contact -->
-        <section id="contact" class="tab-content">
-            <!-- Loader Screen -->
-            <div id="loader">
-                <h1>Karibu...</h1>
-            </div>
-        
-            <div class="contact-container">
-                <h2>Contact Information</h2>
-        
-                <!-- Your Contact Info -->
-                <div class="contact-section">
-                    <h3>Your Contact Info</h3>
-                    <ul>
-                        <li><strong>Name:</strong> {{ current_user.name }}</li>
-                        <li><strong>Email:</strong> {{ current_user.email }}</li>
-                        <li><strong>Backup Email:</strong> backup_email@example.com</li>
-                        <li><strong>Phone No:</strong> +123-456-7890</li>
-                    </ul>
-                </div>
-        
-                <!-- Team Members' Contact Info -->
-                <div class="contact-section">
-                    <h3>Team Members</h3>
-                    <ul>
-                        <li><strong>Alice:</strong> alice@example.com | +111-222-3333</li>
-                        <li><strong>Bob:</strong> bob@example.com | +444-555-6666</li>
-                        <li><strong>Charlie:</strong> charlie@example.com | +777-888-9999</li>
-                    </ul>
-                </div>
-        
-                <!-- Organizations' Contact Info -->
-                <div class="contact-section">
-                    <h3>Organizations</h3>
-                    <ul>
-                        <li><strong>Community Outreach:</strong> outreach@example.org | +123-000-0000</li>
-                        <li><strong>Green Initiative:</strong> green@example.org | +321-999-8888</li>
-                        <li><strong>Digital Literacy:</strong> literacy@example.org | +567-890-1234</li>
-                    </ul>
-                </div>
-            </div>
+            
+                    <!-- Password Change Section -->
+                    <h3>Change Password</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="password" id="oldPassword" placeholder="Old Password" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="newPassword" placeholder="New Password" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                        </div>
+                    </div>
+            
+                    <!-- Preferences Section -->
+                    <h3>Preferences</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="theme">Theme</label>
+                            <select id="theme">
+                                <option value="light" selected>Light</option>
+                                <option value="dark">Dark</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="notifications">Notification Preference</label>
+                            <select id="notifications">
+                                <option value="email">Email</option>
+                                <option value="sms">SMS</option>
+                                <option value="push">Push Notification</option>
+                            </select>
+                        </div>
+                    </div>
+            
+                    <!-- Social Links -->
+                    <h3>Social Media Links</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="url" placeholder="Twitter" value="{{ current_user.twitter_link }}">
+                        </div>
+                        <div class="form-group">
+                            <input type="url" placeholder="LinkedIn" value="{{ current_user.linkedin_link }}">
+                        </div>
+                        <div class="form-group">
+                            <input type="url" placeholder="GitHub" value="{{ current_user.github_link }}">
+                        </div>
+                    </div>
+            
+                    <!-- Account Actions -->
+                    <div class="form-actions">
+                        <button type="submit" class="save-btn">Save Changes</button>
+                        <button type="reset" class="reset-btn">Reset to Default</button>
+                        <button type="button" class="delete-btn">Deactivate Account</button>
+                    </div>
+                </form>
+            </section>           
         </section>
-        
-        <!-- edit -->
-         
     </div>
- <!-- dash end -->
-
 </body>
 </html>

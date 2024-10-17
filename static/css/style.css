@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-    background-color: #f9f9f9; /* Light background */
+    background: linear-gradient(#121125, #111514);
     font-family: 'Arial', sans-serif; /* Font style */
     display: flex;
     justify-content: center;

@@ -1,7 +1,7 @@
 
 /* General Styles */
 body {
-    background-color: #f9f9f9; /* Light background */
+    background-color: #121125; /* Light background */
     font-family: 'Arial', sans-serif; /* Font style */
     display: flex;
     justify-content: center;
@@ -34,6 +34,9 @@ input[type="password"] {
     padding: 10px; /* Padding inside inputs */
     margin: 10px 0; /* Space between inputs */
     border: 1px solid #ddd; /* Light border */
+    transition: all 1s ease;
+    background: linear-gradient(#121125, #121125);
+    
     border-radius: 5px; /* Rounded corners */
     transition: border-color 0.3s; /* Smooth transition for border color */
 }

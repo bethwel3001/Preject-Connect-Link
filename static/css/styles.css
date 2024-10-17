@@ -113,8 +113,10 @@ body {
         position: absolute;
         top: 60px;
         right: 0;
-        background-color: #333;
-        width: 100%;
+        background-color: #b4c281;
+        color: #1ac40b;
+        border-radius: 40px;
+        width: 50%;
         text-align: center;
     }
 
